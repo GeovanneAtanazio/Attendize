@@ -8,14 +8,16 @@ use Tests\TestCase;
 
 class OrganizerDashboardControllerTest extends TestCase
 {
+    private $organiser, $user;
+
     public function setUp(): void
     {
         parent::setUp();
-        $user = factory(User::class)->create();
-        $this->actingAs($user);
+        $this->user = factory(User::class)->create();
+        $this->actingAs($this->user);
 
-        $organiser = factory(Organiser::class)->create();
-        $this->actingAs($organiser);
+        $this->organiser = factory(Organiser::class)->create();
+        $this->actingAs($this->organiser);
     }
 
     /**
@@ -23,7 +25,7 @@ class OrganizerDashboardControllerTest extends TestCase
      */
     public function testShowOrganiserDashboard()
     {
-        $response = $this->get(route('showOrganiserDashboard', ['organiser_id' => 1]));
+        $response = $this->get(route('showOrganiserDashboard', ['organiser_id' => $this->organiser->id]));
         $response->assertSuccessful();
     }
 }

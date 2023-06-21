@@ -4,10 +4,11 @@ namespace Tests\Feature\UnitTest;
 
 use Tests\TestCase;
 use App\Models\User;
+use App\Models\Organiser;
 
 class UserLoginControllerTest extends TestCase
 {
-    private $user;
+    private  $user;
 
     public function setUp(): void
     {
@@ -27,6 +28,18 @@ class UserLoginControllerTest extends TestCase
     public function testLogin()
     {
         $this->assertAuthenticatedAs($this->user);
+    }
+
+    /**
+     * @test
+     */
+    public function testShowEditUser()
+    {
+        $this->actingAs($this->user);
+        $organiser = factory(Organiser::class)->create();
+        $this->actingAs($organiser);
+        $response = $this->get(route('showEditUser'));
+        $response->assertSuccessful();
     }
 
     /**

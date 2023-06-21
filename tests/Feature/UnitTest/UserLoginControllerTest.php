@@ -12,7 +12,7 @@ class UserLoginControllerTest extends TestCase
      *
      * @return void
      */
-    public function test_login_is_successful()
+    public function testLogin()
     {
         $user = factory(User::class)->create([
             'password' => bcrypt($password = 'i-love-laravel'),

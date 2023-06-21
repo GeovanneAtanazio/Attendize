@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\EventTickets;
+namespace Tests\Feature\UnitTest;
 
 use App\Models\Organiser;
 use App\Models\User;

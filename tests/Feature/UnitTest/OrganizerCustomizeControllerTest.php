@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\EventTickets;
+namespace Tests\Feature\UnitTest;
 
 use App\Models\Organiser;
 use App\Models\User;
@@ -21,7 +21,7 @@ class OrganizerCustomizeControllerTest extends TestCase
     /**
      * @test
      */
-    public function postEditOrganiser()
+    public function testPostEditOrganiser()
     {
         $response = $this->post(route('postEditOrganiser', ['organiser_id' => '1']),
         ['name' => 'Empresa', 'email' => 'empresa@teste.com', 'enable_organiser_page' => '1']);

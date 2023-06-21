@@ -7,20 +7,35 @@ use App\Models\User;
 
 class UserLoginControllerTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
-    public function testLogin()
+    private $user;
+
+    public function setUp(): void
     {
-        $user = factory(User::class)->create([
+        parent::setUp();
+        $this->user = factory(User::class)->create([
             'password' => bcrypt($password = 'i-love-laravel'),
         ]);
         $this->post('/login', [
-            'email' => $user->email,
+            'email' => $this->user->email,
             'password' => $password,
         ]);
-        $this->assertAuthenticatedAs($user);
+    }
+
+    /**
+     * @test
+     */
+    public function testLogin()
+    {
+        $this->assertAuthenticatedAs($this->user);
+    }
+
+    /**
+     * @test
+     */
+    public function testLogout()
+    {
+        $this->actingAs($this->user);
+        $this->post('/logout');
+        $this->assertGuest();
     }
 }

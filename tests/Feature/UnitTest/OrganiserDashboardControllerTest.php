@@ -28,4 +28,13 @@ class OrganizerDashboardControllerTest extends TestCase
         $response = $this->get(route('showOrganiserDashboard', ['organiser_id' => $this->organiser->id]));
         $response->assertSuccessful();
     }
+
+     /**
+     * @test
+     */
+    public function testShowOrganiserEvents()
+    {
+        $response = $this->get(route('showOrganiserEvents', ['organiser_id' => $this->organiser->id]));
+        $response->assertSuccessful();
+    }
 }
